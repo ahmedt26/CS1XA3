@@ -74,7 +74,7 @@ toDo() { # Finds all lines with #TODO in them and prints them in todo.log
 	echo 'Creating a To Do Log File and finding TODO items...'
 	rm -f ./Project01/todo.log
 	touch ./Project01/todo.log
-	grep -r '#TODO' --exclude="project_analyze.sh" "todo.log" . >> ./Project01/todo.log
+	grep -r '#TODO' --exclude="project_analyze.sh" --exclude="README.md" --exclude="todo.log" . >> ./Project01/todo.log
 	sleep 0.25
 	echo 'Log file compliled!'
 	echo '====================================================='

@@ -1,3 +1,3 @@
 ./Project01/testfile.hs:This is TODO Line 1 #TODO
 ./Project01/testfile.hs:This is TODO line 3 #TODO
-./Project01/README.md:TODO searches the entire repository for lines in files that contain "#TODO". It then compiles a list of them with their respective filepath (relative to current directory) in a todo.log file.
+./Project01/testfile2.py:Stupid Line Test #TODO
