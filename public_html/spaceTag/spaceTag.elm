@@ -25,8 +25,8 @@ type alias Model = { time : Float -- x and ys are coordinate stuff.
   , y : Float
   , xcord : String
   , ycord : String
-  , huntx : Float -- Coordinates for the hunting ship.
-  , hunty : Float
+  , roamx : Float
+  , roamy : Float
   , randomnum : Float    -- Used to give bad guys different start positions.
   , difficulty : Float } -- A numerical value which increases the speed of the bad guys.
 
@@ -40,42 +40,49 @@ init flags url key = ( { time = 0
                        , finalscore = 0.0
                        , xcord = "" -- Debug variables. Shows the current position of the spaceship relative to coordinate shape.
                        , ycord = ""
-                       , huntx = 0.0
-                       , hunty = -50.0
-                       , randomnum = 0.0 -- WIP: Random number generator to randomize badguy positions.
+                       , roamx = 0.0
+                       , roamy = -50.0
+                       , randomnum = 0.0 
                        , difficulty = 1.0} 
-                       , randfloat )
+                       , randFloat )
 
 
 type Msg = Tick Float GetKeyState
          | NewNumber Float
+         | RoamMove Float
          | MakeRequest Browser.UrlRequest
          | UrlChange Url.Url
          | MoveMsg (Float, Float) 
          | EnemyMsg
 
-randfloatgen : Random.Generator Float -- Generates a random float from -10 to 10. WIP
-randfloatgen = Random.float -150 150 
+randFloatGen : Random.Generator Float -- Generates a random float from -10 to 10.
+randFloatGen = Random.float -150 150 
 
-randfloat : Cmd Msg  -- Returns a random float from -10 to 10. WIP
-randfloat = Random.generate NewNumber randfloatgen
+randFloat : Cmd Msg  -- Returns a random float from -10 to 10.
+randFloat = Random.generate NewNumber randFloatGen
+
+randomRoamGen : Random.Generator Float -- Generates a random float for the roamer to roam.
+randomRoamGen = Random.float -5 5 
+
+randomRoam : Cmd Msg  -- Actually makes the random float.
+randomRoam = Random.generate RoamMove randomRoamGen
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
    case msg of
 
+       RoamMove num -> ( {model | roamx = model.roamx + num, roamy = model.roamy + num }, Cmd.none) -- Makes roamer roam.
+
        NewNumber num -> ( {model | randomnum = num}, Cmd.none) -- Possibly implement random number generation for placing the bad guys in varying locations.
 
-       Tick ticks _ -> ( {model | time = ticks, score = String.fromFloat model.time, difficulty = model.difficulty + 0.0001}, Cmd.none)
+       Tick ticks _ -> ( {model | time = ticks, score = String.fromFloat model.time, difficulty = model.difficulty + 0.0001}, randomRoam)
 
        EnemyMsg -> ( {model | gmtrans = 1.0, finalscore = model.time}, Cmd.none) -- GameOver text, and show score. If you hover over another badguy again it will update score. Will fix.
 
        MoveMsg (cx, cy) -> ({model | x = 1000 + cx -- Move your character and the phaser ship.
                                    , y = 500 - cy
                                    , xcord = String.fromFloat cx
-                                   , ycord = String.fromFloat cy
-                                   , huntx = model.x - model.huntx
-                                   , hunty = model.y - model.hunty}, Cmd.none)
+                                   , ycord = String.fromFloat cy}, Cmd.none)
 
 
 
@@ -124,8 +131,11 @@ view model =
     badguy4 = group [ circle 20 |> filled red, triangle 20 |> filled lightBlue] -- Standard badguy, move through the center and comes around.
                    |> rotate (degrees 90) |> move (model.randomnum + 100*cos (model.difficulty * model.time), 200 + 100*tan (0.5*model.difficulty*model.time))
                    |> notifyEnter EnemyMsg
-    phaser = group [ ngon 5 25 |> filled red, triangle 25 |> filled orange] -- Teleports around ship (actually a bug but now it's a feature!)
-                   |> rotate (degrees 180) |> move (model.huntx , model.hunty)
+    glitch = group [ ngon 5 25 |> filled red, triangle 25 |> filled orange] -- Glitches along a line.
+                   |> rotate (degrees 180) |> move (model.randomnum/2 + model.roamx ,model.randomnum/2 + model.roamy)
+                   |> notifyEnter EnemyMsg
+    glitch2 = group [ ngon 5 25 |> filled red, triangle 25 |> filled orange] -- Glitches along a line.
+                   |> rotate (degrees 180) |> move (model.randomnum - model.roamx , model.randomnum - model.roamy)
                    |> notifyEnter EnemyMsg
     strafer = group [ ngon 12 25 |> filled red, square 25 |> filled orange] -- Strafes the map
                    |> rotate (degrees 180) |> move (500*tan (model.difficulty * model.time), 100*cos (3.0*model.difficulty * model.time) - model.randomnum)
@@ -143,11 +153,9 @@ view model =
                    |> rotate (degrees 180) |> move (600*sin (model.difficulty * model.time), 400*cos model.time)
                    |> notifyEnter EnemyMsg
 
-    body  = collage 1000 1000 [ background, gameover, scoretext, spaceship, coordsystem, badguy, badguy2, badguy3, badguy4, phaser, strafer, strafer2, strafer3, strafer4, carrier] 
+    body  = collage 1000 1000 [ background, gameover, scoretext, coordsystem, badguy, badguy2, badguy3, badguy4, glitch, glitch2, strafer, strafer2, strafer3, strafer4, carrier] 
 
   in { title = title, body = body }
 
 subscriptions : Model -> Sub Msg
 subscriptions model = Sub.none
-
-

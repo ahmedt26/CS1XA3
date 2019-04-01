@@ -8654,7 +8654,7 @@ var elm$random$Random$float = F2(
 					elm$random$Random$next(seed1));
 			});
 	});
-var author$project$Main$randfloatgen = A2(elm$random$Random$float, -100, 100);
+var author$project$Main$randFloatGen = A2(elm$random$Random$float, -150, 150);
 var elm$random$Random$Generate = function (a) {
 	return {$: 'Generate', a: a};
 };
@@ -8729,20 +8729,32 @@ var elm$random$Random$generate = F2(
 			elm$random$Random$Generate(
 				A2(elm$random$Random$map, tagger, generator)));
 	});
-var author$project$Main$randfloat = A2(elm$random$Random$generate, author$project$Main$NewNumber, author$project$Main$randfloatgen);
+var author$project$Main$randFloat = A2(elm$random$Random$generate, author$project$Main$NewNumber, author$project$Main$randFloatGen);
 var author$project$Main$init = F3(
 	function (flags, url, key) {
 		return _Utils_Tuple2(
-			{difficulty: 1.0, finalscore: 0.0, gmtrans: 0.0, huntx: 0.0, hunty: -50.0, randomnum: 0.0, score: '', time: 0, x: 0.0, xcord: '', y: 0.0, ycord: ''},
-			author$project$Main$randfloat);
+			{difficulty: 1.0, finalscore: 0.0, gmtrans: 0.0, randomnum: 0.0, roamx: 0.0, roamy: -50.0, score: '', time: 0, x: 0.0, xcord: '', y: 0.0, ycord: ''},
+			author$project$Main$randFloat);
 	});
 var elm$core$Platform$Sub$none = elm$core$Platform$Sub$batch(_List_Nil);
 var author$project$Main$subscriptions = function (model) {
 	return elm$core$Platform$Sub$none;
 };
+var author$project$Main$RoamMove = function (a) {
+	return {$: 'RoamMove', a: a};
+};
+var author$project$Main$randomRoamGen = A2(elm$random$Random$float, -5, 5);
+var author$project$Main$randomRoam = A2(elm$random$Random$generate, author$project$Main$RoamMove, author$project$Main$randomRoamGen);
 var author$project$Main$update = F2(
 	function (msg, model) {
 		switch (msg.$) {
+			case 'RoamMove':
+				var num = msg.a;
+				return _Utils_Tuple2(
+					_Utils_update(
+						model,
+						{roamx: model.roamx + num, roamy: model.roamy + num}),
+					elm$core$Platform$Cmd$none);
 			case 'NewNumber':
 				var num = msg.a;
 				return _Utils_Tuple2(
@@ -8760,7 +8772,7 @@ var author$project$Main$update = F2(
 							score: elm$core$String$fromFloat(model.time),
 							time: ticks
 						}),
-					elm$core$Platform$Cmd$none);
+					author$project$Main$randomRoam);
 			case 'EnemyMsg':
 				return _Utils_Tuple2(
 					_Utils_update(
@@ -8775,8 +8787,6 @@ var author$project$Main$update = F2(
 					_Utils_update(
 						model,
 						{
-							huntx: model.x - model.huntx,
-							hunty: model.y - model.hunty,
 							x: 1000 + cx,
 							xcord: elm$core$String$fromFloat(cx),
 							y: 500 - cy,
@@ -9329,12 +9339,33 @@ var author$project$Main$view = function (model) {
 				MacCASOutreach$graphicsvg$GraphicSVG$bold(
 					MacCASOutreach$graphicsvg$GraphicSVG$text(
 						'Random Value: ' + elm$core$String$fromFloat(model.randomnum))))));
-	var phaser = A2(
+	var glitch2 = A2(
 		MacCASOutreach$graphicsvg$GraphicSVG$notifyEnter,
 		author$project$Main$EnemyMsg,
 		A2(
 			MacCASOutreach$graphicsvg$GraphicSVG$move,
-			_Utils_Tuple2(model.huntx, model.hunty),
+			_Utils_Tuple2(model.randomnum - model.roamx, model.randomnum - model.roamy),
+			A2(
+				MacCASOutreach$graphicsvg$GraphicSVG$rotate,
+				elm$core$Basics$degrees(180),
+				MacCASOutreach$graphicsvg$GraphicSVG$group(
+					_List_fromArray(
+						[
+							A2(
+							MacCASOutreach$graphicsvg$GraphicSVG$filled,
+							MacCASOutreach$graphicsvg$GraphicSVG$red,
+							A2(MacCASOutreach$graphicsvg$GraphicSVG$ngon, 5, 25)),
+							A2(
+							MacCASOutreach$graphicsvg$GraphicSVG$filled,
+							MacCASOutreach$graphicsvg$GraphicSVG$orange,
+							MacCASOutreach$graphicsvg$GraphicSVG$triangle(25))
+						])))));
+	var glitch = A2(
+		MacCASOutreach$graphicsvg$GraphicSVG$notifyEnter,
+		author$project$Main$EnemyMsg,
+		A2(
+			MacCASOutreach$graphicsvg$GraphicSVG$move,
+			_Utils_Tuple2((model.randomnum / 2) + model.roamx, (model.randomnum / 2) + model.roamy),
 			A2(
 				MacCASOutreach$graphicsvg$GraphicSVG$rotate,
 				elm$core$Basics$degrees(180),
@@ -9512,7 +9543,7 @@ var author$project$Main$view = function (model) {
 		1000,
 		1000,
 		_List_fromArray(
-			[background, gameover, scoretext, randtest, spaceship, coordsystem, badguy, badguy2, badguy3, badguy4, phaser, strafer, strafer2, strafer3, strafer4, carrier]));
+			[background, gameover, scoretext, coordsystem, badguy, badguy2, badguy3, badguy4, glitch, glitch2, strafer, strafer2, strafer3, strafer4, carrier]));
 	return {body: body, title: title};
 };
 var author$project$Main$main = A2(
