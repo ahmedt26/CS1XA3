@@ -90,10 +90,9 @@ testPost model =
 view : Model -> Html Msg
 view model =
   div []
-    [ div [] [ text "Secret NSA Gateway" ]
-    , viewInput "text" "Name" model.name Name
+    [ viewInput "text" "Name" model.name Name
     , viewInput "password" "Password" model.password Password
-    , button [ onClick PostMatch ] [ text "Enter" ]
+    , button [ onClick PostMatch ] [ text "Access Secret NSA Gateway" ]
     , div [] [ text model.response ]
     ]
 
