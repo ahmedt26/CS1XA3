@@ -73,11 +73,16 @@ update msg model =
 
        RoamMove num -> ( {model | roamx = model.roamx + num, roamy = model.roamy + num }, Cmd.none) -- Makes roamer roam.
 
-       NewNumber num -> ( {model | randomnum = num}, Cmd.none) -- Possibly implement random number generation for placing the bad guys in varying locations.
+       NewNumber num -> ( {model | randomnum = num}, Cmd.none) -- Random number generation.
 
        Tick ticks _ -> ( {model | time = ticks, score = String.fromFloat model.time, difficulty = model.difficulty + 0.0001}, randomRoam)
 
-       EnemyMsg -> ( {model | gmtrans = 1.0, finalscore = model.time}, Cmd.none) -- GameOver text, and show score. If you hover over another badguy again it will update score. Will fix.
+       EnemyMsg ->  if model.gmtrans == 0.0 then -- You only lose once, prevents updating of game over score when hitting another bad guy.
+                      ({model | gmtrans = 1.0, finalscore = model.time}, Cmd.none)
+                    else
+                    (model, Cmd.none)
+
+
 
        MoveMsg (cx, cy) -> ({model | x = 1000 + cx -- Move your character and the phaser ship.
                                    , y = 500 - cy

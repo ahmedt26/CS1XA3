@@ -8774,11 +8774,11 @@ var author$project$Main$update = F2(
 						}),
 					author$project$Main$randomRoam);
 			case 'EnemyMsg':
-				return _Utils_Tuple2(
+				return (model.gmtrans === 0.0) ? _Utils_Tuple2(
 					_Utils_update(
 						model,
 						{finalscore: model.time, gmtrans: 1.0}),
-					elm$core$Platform$Cmd$none);
+					elm$core$Platform$Cmd$none) : _Utils_Tuple2(model, elm$core$Platform$Cmd$none);
 			case 'MoveMsg':
 				var _n1 = msg.a;
 				var cx = _n1.a;
