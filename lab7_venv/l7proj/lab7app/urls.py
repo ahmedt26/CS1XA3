@@ -3,5 +3,5 @@ from . import views
 
 
 urlpatterns = [
-    path("lab7/", views.post_req, name = 'lab7app-post_req'),
+    path("lab7/", views.postReq, name = 'lab7app-postReq'),
     ]
