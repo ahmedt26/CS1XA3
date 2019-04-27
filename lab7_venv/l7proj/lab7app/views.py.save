@@ -5,13 +5,7 @@ from django.contrib import admin
 from django.contrib.auth import authenticate
 
 def postReq(request):
-	user = request.POST.get("name","")
-	password = request.POST.get("password","")
-
-	if user == "Jimmy" and password == "Hendrix":
-		return HttpResponse("Cool")
-	else:
-		return HttpResponse("Bad User Name")
+	pass
 
 def session_incr(request):
    i = request.session.get('count',0)
@@ -44,12 +38,4 @@ def login_user(request):
       login(request.User)
       HttpResponse("User is valid")
    else:
-      HttpResponse("User is invalid")
-
-def user_info(request):
-   user = request.user
-
-  if user.is_authenticated:
-     returnHttpResponse("Hello!")
-  else:
-     return HttpResponse("I don't know you!")
+      
