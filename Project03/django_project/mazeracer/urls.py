@@ -3,6 +3,6 @@ from . import views
 
 
 urlpatterns = [
-	path(' ',views.mazeRacerDisplay, name='mazeracer-gameDisplay'),
+	path('Project03/' ,views.mazeRacerGame, name='MazeRacer'),
 
 ]

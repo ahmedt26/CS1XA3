@@ -18,5 +18,5 @@ from django.urls import path, include
 from django.http import HttpResponse
 root = 'e/ahmedt26/'
 urlpatterns = [
-    path(root + 'mazeracer/', include('mazeracer.urls')),
+    path(root, include('mazeracer.urls')), #Route to Maze Racer game.
 ]
