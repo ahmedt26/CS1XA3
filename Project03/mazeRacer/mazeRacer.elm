@@ -64,12 +64,12 @@ init flags url key = ( { time = 0
                         , localUser = "Local Player"
                         , stage1Scores = [ TableEntry "JavaScript" "Baby Steps" 12.231 -- Stage one's scores. Will be sorted throughout game to be displayed in local high score table.
                                        , TableEntry "PHP" "Baby Steps" 11.200
-                                       , TableEntry "HTML" "Baby Steps" 9.542
-                                       , TableEntry "Elm" "Baby Steps" 10.197
+                                       , TableEntry "Python" "Baby Steps" 9.542
+                                       , TableEntry "Elm" "Baby Steps" 9.197
                                        , TableEntry "Haskell" "Baby Steps" 9.785
                                        
                                        ]
-                        , stage2Scores = [ TableEntry "HTML" "Maze Apprentice" 9.123 -- Stage two
+                        , stage2Scores = [ TableEntry "Python" "Maze Apprentice" 9.123 -- Stage two
                                        , TableEntry "Elm" "Maze Apprentice" 11.138
                                        , TableEntry "PHP" "Maze Apprentice" 13.286
                                        , TableEntry "Haskell" "Maze Apprentice" 9.316
@@ -77,7 +77,7 @@ init flags url key = ( { time = 0
                                        ]
                         , stage3Scores = [ TableEntry "PHP" "The Maze Runner" 21.551 -- Stage three
                                        , TableEntry "Elm" "The Maze Runner" 17.528
-                                       , TableEntry "HTML" "The Maze Runner" 17.321
+                                       , TableEntry "Python" "The Maze Runner" 17.321
                                        , TableEntry "Haskell" "The Maze Runner" 16.928
                                        
                                        ]
@@ -197,14 +197,14 @@ view model =
                          ,  (roundedRect 700 70 2 |> filled blue |> addOutline (solid 2) white |> move (-400 + 20*sin model.time, 265)) |> notifyTap StageOneClick
                          ,  (text "Baby Steps") |> size 50 |> filled white |> move (-450,250) |> notifyTap StageOneClick
                         
-                         ,  (roundedRect 700 70 2 |> filled orange |> addOutline (solid 2) white |> move (-400 + 25*sin model.time, 190)) |> notifyTap StageTwoClick
-                         ,  (text "Maze Apprentice") |> size 50 |> filled white |> move (-450,175) |> notifyTap StageTwoClick
+                         ,  (roundedRect 700 70 2 |> filled orange |> addOutline (solid 2) white |> move (-400 + 25*sin model.time, 185)) |> notifyTap StageTwoClick
+                         ,  (text "Maze Apprentice") |> size 50 |> filled white |> move (-450,170) |> notifyTap StageTwoClick
                          
-                         ,  (roundedRect 700 70 2 |> filled red |> addOutline (solid 2) white |> move (-400 + 30*sin model.time, 115)) |> notifyTap StageThreeClick
-                         ,  (text "The Maze Racer") |> size 50 |> filled white |> move (-450,100) |> notifyTap StageThreeClick
+                         ,  (roundedRect 700 70 2 |> filled red |> addOutline (solid 2) white |> move (-400 + 30*sin model.time, 105)) |> notifyTap StageThreeClick
+                         ,  (text "The Maze Racer") |> size 50 |> filled white |> move (-450,90) |> notifyTap StageThreeClick
                          
-                         ,  (roundedRect 700 70 2 |> filled purple |> addOutline (solid 2) white |> move (-400 + 35*sin model.time, 40)) |> notifyTap MenuClick
-                         ,  (text "Back To Menu") |> size 50 |> filled white |> move (-450,25) |> notifyTap MenuClick
+                         ,  (roundedRect 700 70 2 |> filled purple |> addOutline (solid 2) white |> move (-400 + 35*sin model.time, 25)) |> notifyTap MenuClick
+                         ,  (text "Back To Menu") |> size 50 |> filled white |> move (-450,10) |> notifyTap MenuClick
                        ]
     
     howToScreen =  group [ square 1000 |> filled black
@@ -248,20 +248,22 @@ view model =
     highScoreScreen =  group [ square 1000 |> filled black -- TODO
                          ,  text "High Scores" |> size 100 |> filled white |> move (-450 + 100*tan (1.5*model.time),350)  -- Top Left Title
 
-                         , centered ((text (scoreTablePrint model.stage1Scores 0)) )|> size 30 |> filled white |> move (5*sin (2 * model.time),250) -- Top four of each stage is shown here.
-                         , centered ((text (scoreTablePrint model.stage1Scores 1)) )|> size 30 |> filled white |> move (5*sin (2 * model.time),220)
-                         , centered ((text (scoreTablePrint model.stage1Scores 2)) )|> size 30 |> filled white |> move (5*sin (2 * model.time),190)
-                         , centered ((text (scoreTablePrint model.stage1Scores 3)) )|> size 30 |> filled white |> move (5*sin (2 * model.time),160)
+                         , centered ((text ("Name | | Stage | | Time")) )|> size 30 |> filled white |> move (5*sin (2 * model.time),275) -- Top four of each stage is shown here.
+                        
+                         , centered ((text (scoreTablePrint model.stage1Scores 0)) )|> size 30 |> filled white |> move (5*sin (2 * model.time),220) -- Top four of each stage is shown here.
+                         , centered ((text (scoreTablePrint model.stage1Scores 1)) )|> size 30 |> filled white |> move (5*sin (2 * model.time),190)
+                         , centered ((text (scoreTablePrint model.stage1Scores 2)) )|> size 30 |> filled white |> move (5*sin (2 * model.time),160)
+                         , centered ((text (scoreTablePrint model.stage1Scores 3)) )|> size 30 |> filled white |> move (5*sin (2 * model.time),130)
 
-                         , centered ((text (scoreTablePrint model.stage2Scores 0)) )|> size 30 |> filled white |> move (5*sin (2 * model.time),100)
-                         , centered ((text (scoreTablePrint model.stage2Scores 1)) )|> size 30 |> filled white |> move (5*sin (2 * model.time),70)
-                         , centered ((text (scoreTablePrint model.stage2Scores 2)) )|> size 30 |> filled white |> move (5*sin (2 * model.time),40)
-                         , centered ((text (scoreTablePrint model.stage2Scores 3)) )|> size 30 |> filled white |> move (5*sin (2 * model.time),10)
+                         , centered ((text (scoreTablePrint model.stage2Scores 0)) )|> size 30 |> filled white |> move (5*sin (2 * model.time),70)
+                         , centered ((text (scoreTablePrint model.stage2Scores 1)) )|> size 30 |> filled white |> move (5*sin (2 * model.time),40)
+                         , centered ((text (scoreTablePrint model.stage2Scores 2)) )|> size 30 |> filled white |> move (5*sin (2 * model.time),10)
+                         , centered ((text (scoreTablePrint model.stage2Scores 3)) )|> size 30 |> filled white |> move (5*sin (2 * model.time),-20)
 
-                         , centered ((text (scoreTablePrint model.stage3Scores 0)) )|> size 30 |> filled white |> move (5*sin (2 * model.time),-50)
-                         , centered ((text (scoreTablePrint model.stage3Scores 1)) )|> size 30 |> filled white |> move (5*sin (2 * model.time),-80)
-                         , centered ((text (scoreTablePrint model.stage3Scores 2)) )|> size 30 |> filled white |> move (5*sin (2 * model.time),-110)
-                         , centered ((text (scoreTablePrint model.stage3Scores 3)) )|> size 30 |> filled white |> move (5*sin (2 * model.time),-140)
+                         , centered ((text (scoreTablePrint model.stage3Scores 0)) )|> size 30 |> filled white |> move (5*sin (2 * model.time),-80)
+                         , centered ((text (scoreTablePrint model.stage3Scores 1)) )|> size 30 |> filled white |> move (5*sin (2 * model.time),-110)
+                         , centered ((text (scoreTablePrint model.stage3Scores 2)) )|> size 30 |> filled white |> move (5*sin (2 * model.time),-140)
+                         , centered ((text (scoreTablePrint model.stage3Scores 3)) )|> size 30 |> filled white |> move (5*sin (2 * model.time),-170)
 
                          ,  (roundedRect 900 70 2 |> filled purple |> addOutline (solid 2) white|> move (-300 + 35*sin model.time, -435)) |> notifyTap MenuClick
                          ,  (text "Back to Menu") |> size 50 |> filled white |> move (-450,-450) |> notifyTap MenuClick

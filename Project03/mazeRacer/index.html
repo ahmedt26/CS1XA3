@@ -8626,13 +8626,13 @@ var author$project$Main$init = F3(
 					[
 						A3(author$project$Main$TableEntry, 'JavaScript', 'Baby Steps', 12.231),
 						A3(author$project$Main$TableEntry, 'PHP', 'Baby Steps', 11.2),
-						A3(author$project$Main$TableEntry, 'HTML', 'Baby Steps', 9.542),
-						A3(author$project$Main$TableEntry, 'Elm', 'Baby Steps', 10.197),
+						A3(author$project$Main$TableEntry, 'Python', 'Baby Steps', 9.542),
+						A3(author$project$Main$TableEntry, 'Elm', 'Baby Steps', 9.197),
 						A3(author$project$Main$TableEntry, 'Haskell', 'Baby Steps', 9.785)
 					]),
 				stage2Scores: _List_fromArray(
 					[
-						A3(author$project$Main$TableEntry, 'HTML', 'Maze Apprentice', 9.123),
+						A3(author$project$Main$TableEntry, 'Python', 'Maze Apprentice', 9.123),
 						A3(author$project$Main$TableEntry, 'Elm', 'Maze Apprentice', 11.138),
 						A3(author$project$Main$TableEntry, 'PHP', 'Maze Apprentice', 13.286),
 						A3(author$project$Main$TableEntry, 'Haskell', 'Maze Apprentice', 9.316)
@@ -8641,7 +8641,7 @@ var author$project$Main$init = F3(
 					[
 						A3(author$project$Main$TableEntry, 'PHP', 'The Maze Runner', 21.551),
 						A3(author$project$Main$TableEntry, 'Elm', 'The Maze Runner', 17.528),
-						A3(author$project$Main$TableEntry, 'HTML', 'The Maze Runner', 17.321),
+						A3(author$project$Main$TableEntry, 'Python', 'The Maze Runner', 17.321),
 						A3(author$project$Main$TableEntry, 'Haskell', 'The Maze Runner', 16.928)
 					]),
 				stageName: 'NOSTAGE',
@@ -10405,7 +10405,7 @@ var author$project$Main$view = function (model) {
 					MacCASOutreach$graphicsvg$GraphicSVG$move,
 					_Utils_Tuple2(
 						(-400) + (25 * elm$core$Basics$sin(model.time)),
-						190),
+						185),
 					A3(
 						MacCASOutreach$graphicsvg$GraphicSVG$addOutline,
 						MacCASOutreach$graphicsvg$GraphicSVG$solid(2),
@@ -10419,7 +10419,7 @@ var author$project$Main$view = function (model) {
 				author$project$Main$StageTwoClick,
 				A2(
 					MacCASOutreach$graphicsvg$GraphicSVG$move,
-					_Utils_Tuple2(-450, 175),
+					_Utils_Tuple2(-450, 170),
 					A2(
 						MacCASOutreach$graphicsvg$GraphicSVG$filled,
 						MacCASOutreach$graphicsvg$GraphicSVG$white,
@@ -10434,7 +10434,7 @@ var author$project$Main$view = function (model) {
 					MacCASOutreach$graphicsvg$GraphicSVG$move,
 					_Utils_Tuple2(
 						(-400) + (30 * elm$core$Basics$sin(model.time)),
-						115),
+						105),
 					A3(
 						MacCASOutreach$graphicsvg$GraphicSVG$addOutline,
 						MacCASOutreach$graphicsvg$GraphicSVG$solid(2),
@@ -10448,7 +10448,7 @@ var author$project$Main$view = function (model) {
 				author$project$Main$StageThreeClick,
 				A2(
 					MacCASOutreach$graphicsvg$GraphicSVG$move,
-					_Utils_Tuple2(-450, 100),
+					_Utils_Tuple2(-450, 90),
 					A2(
 						MacCASOutreach$graphicsvg$GraphicSVG$filled,
 						MacCASOutreach$graphicsvg$GraphicSVG$white,
@@ -10463,7 +10463,7 @@ var author$project$Main$view = function (model) {
 					MacCASOutreach$graphicsvg$GraphicSVG$move,
 					_Utils_Tuple2(
 						(-400) + (35 * elm$core$Basics$sin(model.time)),
-						40),
+						25),
 					A3(
 						MacCASOutreach$graphicsvg$GraphicSVG$addOutline,
 						MacCASOutreach$graphicsvg$GraphicSVG$solid(2),
@@ -10477,7 +10477,7 @@ var author$project$Main$view = function (model) {
 				author$project$Main$MenuClick,
 				A2(
 					MacCASOutreach$graphicsvg$GraphicSVG$move,
-					_Utils_Tuple2(-450, 25),
+					_Utils_Tuple2(-450, 10),
 					A2(
 						MacCASOutreach$graphicsvg$GraphicSVG$filled,
 						MacCASOutreach$graphicsvg$GraphicSVG$white,
@@ -10754,7 +10754,7 @@ var author$project$Main$view = function (model) {
 				MacCASOutreach$graphicsvg$GraphicSVG$move,
 				_Utils_Tuple2(
 					5 * elm$core$Basics$sin(2 * model.time),
-					250),
+					275),
 				A2(
 					MacCASOutreach$graphicsvg$GraphicSVG$filled,
 					MacCASOutreach$graphicsvg$GraphicSVG$white,
@@ -10762,8 +10762,7 @@ var author$project$Main$view = function (model) {
 						MacCASOutreach$graphicsvg$GraphicSVG$size,
 						30,
 						MacCASOutreach$graphicsvg$GraphicSVG$centered(
-							MacCASOutreach$graphicsvg$GraphicSVG$text(
-								A2(author$project$Main$scoreTablePrint, model.stage1Scores, 0)))))),
+							MacCASOutreach$graphicsvg$GraphicSVG$text('Name | | Stage | | Time'))))),
 				A2(
 				MacCASOutreach$graphicsvg$GraphicSVG$move,
 				_Utils_Tuple2(
@@ -10777,7 +10776,7 @@ var author$project$Main$view = function (model) {
 						30,
 						MacCASOutreach$graphicsvg$GraphicSVG$centered(
 							MacCASOutreach$graphicsvg$GraphicSVG$text(
-								A2(author$project$Main$scoreTablePrint, model.stage1Scores, 1)))))),
+								A2(author$project$Main$scoreTablePrint, model.stage1Scores, 0)))))),
 				A2(
 				MacCASOutreach$graphicsvg$GraphicSVG$move,
 				_Utils_Tuple2(
@@ -10791,7 +10790,7 @@ var author$project$Main$view = function (model) {
 						30,
 						MacCASOutreach$graphicsvg$GraphicSVG$centered(
 							MacCASOutreach$graphicsvg$GraphicSVG$text(
-								A2(author$project$Main$scoreTablePrint, model.stage1Scores, 2)))))),
+								A2(author$project$Main$scoreTablePrint, model.stage1Scores, 1)))))),
 				A2(
 				MacCASOutreach$graphicsvg$GraphicSVG$move,
 				_Utils_Tuple2(
@@ -10805,12 +10804,12 @@ var author$project$Main$view = function (model) {
 						30,
 						MacCASOutreach$graphicsvg$GraphicSVG$centered(
 							MacCASOutreach$graphicsvg$GraphicSVG$text(
-								A2(author$project$Main$scoreTablePrint, model.stage1Scores, 3)))))),
+								A2(author$project$Main$scoreTablePrint, model.stage1Scores, 2)))))),
 				A2(
 				MacCASOutreach$graphicsvg$GraphicSVG$move,
 				_Utils_Tuple2(
 					5 * elm$core$Basics$sin(2 * model.time),
-					100),
+					130),
 				A2(
 					MacCASOutreach$graphicsvg$GraphicSVG$filled,
 					MacCASOutreach$graphicsvg$GraphicSVG$white,
@@ -10819,7 +10818,7 @@ var author$project$Main$view = function (model) {
 						30,
 						MacCASOutreach$graphicsvg$GraphicSVG$centered(
 							MacCASOutreach$graphicsvg$GraphicSVG$text(
-								A2(author$project$Main$scoreTablePrint, model.stage2Scores, 0)))))),
+								A2(author$project$Main$scoreTablePrint, model.stage1Scores, 3)))))),
 				A2(
 				MacCASOutreach$graphicsvg$GraphicSVG$move,
 				_Utils_Tuple2(
@@ -10833,7 +10832,7 @@ var author$project$Main$view = function (model) {
 						30,
 						MacCASOutreach$graphicsvg$GraphicSVG$centered(
 							MacCASOutreach$graphicsvg$GraphicSVG$text(
-								A2(author$project$Main$scoreTablePrint, model.stage2Scores, 1)))))),
+								A2(author$project$Main$scoreTablePrint, model.stage2Scores, 0)))))),
 				A2(
 				MacCASOutreach$graphicsvg$GraphicSVG$move,
 				_Utils_Tuple2(
@@ -10847,7 +10846,7 @@ var author$project$Main$view = function (model) {
 						30,
 						MacCASOutreach$graphicsvg$GraphicSVG$centered(
 							MacCASOutreach$graphicsvg$GraphicSVG$text(
-								A2(author$project$Main$scoreTablePrint, model.stage2Scores, 2)))))),
+								A2(author$project$Main$scoreTablePrint, model.stage2Scores, 1)))))),
 				A2(
 				MacCASOutreach$graphicsvg$GraphicSVG$move,
 				_Utils_Tuple2(
@@ -10861,12 +10860,12 @@ var author$project$Main$view = function (model) {
 						30,
 						MacCASOutreach$graphicsvg$GraphicSVG$centered(
 							MacCASOutreach$graphicsvg$GraphicSVG$text(
-								A2(author$project$Main$scoreTablePrint, model.stage2Scores, 3)))))),
+								A2(author$project$Main$scoreTablePrint, model.stage2Scores, 2)))))),
 				A2(
 				MacCASOutreach$graphicsvg$GraphicSVG$move,
 				_Utils_Tuple2(
 					5 * elm$core$Basics$sin(2 * model.time),
-					-50),
+					-20),
 				A2(
 					MacCASOutreach$graphicsvg$GraphicSVG$filled,
 					MacCASOutreach$graphicsvg$GraphicSVG$white,
@@ -10875,7 +10874,7 @@ var author$project$Main$view = function (model) {
 						30,
 						MacCASOutreach$graphicsvg$GraphicSVG$centered(
 							MacCASOutreach$graphicsvg$GraphicSVG$text(
-								A2(author$project$Main$scoreTablePrint, model.stage3Scores, 0)))))),
+								A2(author$project$Main$scoreTablePrint, model.stage2Scores, 3)))))),
 				A2(
 				MacCASOutreach$graphicsvg$GraphicSVG$move,
 				_Utils_Tuple2(
@@ -10889,7 +10888,7 @@ var author$project$Main$view = function (model) {
 						30,
 						MacCASOutreach$graphicsvg$GraphicSVG$centered(
 							MacCASOutreach$graphicsvg$GraphicSVG$text(
-								A2(author$project$Main$scoreTablePrint, model.stage3Scores, 1)))))),
+								A2(author$project$Main$scoreTablePrint, model.stage3Scores, 0)))))),
 				A2(
 				MacCASOutreach$graphicsvg$GraphicSVG$move,
 				_Utils_Tuple2(
@@ -10903,12 +10902,26 @@ var author$project$Main$view = function (model) {
 						30,
 						MacCASOutreach$graphicsvg$GraphicSVG$centered(
 							MacCASOutreach$graphicsvg$GraphicSVG$text(
-								A2(author$project$Main$scoreTablePrint, model.stage3Scores, 2)))))),
+								A2(author$project$Main$scoreTablePrint, model.stage3Scores, 1)))))),
 				A2(
 				MacCASOutreach$graphicsvg$GraphicSVG$move,
 				_Utils_Tuple2(
 					5 * elm$core$Basics$sin(2 * model.time),
 					-140),
+				A2(
+					MacCASOutreach$graphicsvg$GraphicSVG$filled,
+					MacCASOutreach$graphicsvg$GraphicSVG$white,
+					A2(
+						MacCASOutreach$graphicsvg$GraphicSVG$size,
+						30,
+						MacCASOutreach$graphicsvg$GraphicSVG$centered(
+							MacCASOutreach$graphicsvg$GraphicSVG$text(
+								A2(author$project$Main$scoreTablePrint, model.stage3Scores, 2)))))),
+				A2(
+				MacCASOutreach$graphicsvg$GraphicSVG$move,
+				_Utils_Tuple2(
+					5 * elm$core$Basics$sin(2 * model.time),
+					-170),
 				A2(
 					MacCASOutreach$graphicsvg$GraphicSVG$filled,
 					MacCASOutreach$graphicsvg$GraphicSVG$white,
